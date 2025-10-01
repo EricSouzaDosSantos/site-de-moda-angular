@@ -1,0 +1,11 @@
+.products-page {
+  padding: 2rem;
+  max-width: 1000px;
+  margin: auto;
+
+  h2 {
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    color: #111;
+  }
+}

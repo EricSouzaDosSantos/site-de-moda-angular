@@ -1,0 +1,33 @@
+<section class="product-list">
+  <div
+    class="product-card"
+    *ngFor="let product of products"
+    (click)="navigateToProduct(product.id)"
+    role="button"
+    tabindex="0"
+    (keydown.enter)="navigateToProduct(product.id)"
+    (keydown.space)="navigateToProduct(product.id)"
+  >
+    <img [src]="product.image" [alt]="product.name" />
+
+    <div class="product-info">
+      <h3>{{ product.name }}</h3>
+      <p class="price">
+        {{ product.price | currency : "BRL" : "symbol" : "1.2-2" : "pt-BR" }}
+      </p>
+      <p class="category">Categoria: {{ product.category }}</p>
+      <p class="description">{{ product.description }}</p>
+
+      <div class="product-meta" *ngIf="product.rating && product.reviews">
+        <span class="rating">⭐ {{ product.rating }}/5</span>
+        <span class="reviews">({{ product.reviews }} avaliações)</span>
+      </div>
+
+      <div class="stock-info" *ngIf="product.stock">
+        <span class="stock" [class.low-stock]="product.stock < 10">
+          {{ product.stock }} em estoque
+        </span>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,40 @@
+<div class="login-container">
+  <main class="login-card">
+    <header class="login-header">
+      <h1>Login</h1>
+    </header>
+
+    <form class="login-form">
+      <div class="input-group">
+        <label for="email">E-mail</label>
+        <input id="email" type="email" placeholder="seu@email.com" />
+      </div>
+
+      <div class="input-group">
+        <label for="password">Senha</label>
+        <input id="password" type="password" placeholder="••••••••" />
+        <a href="#" class="forgot-password">Esqueceu a senha?</a>
+      </div>
+
+      <button type="submit" class="submit-btn">Entrar</button>
+
+      <div class="divider"><span>ou</span></div>
+
+      <!-- <button type="button" class="google-btn">
+        <img src="assets/img/google-icon.svg" alt="" />
+        Entrar com Google
+      </button> -->
+
+      <app-google-signin-button [buttonText]="'Entrar com Google'"></app-google-signin-button>
+
+      <p class="signup-text">
+        Não tem conta?
+        <a href="/register" class="signup-link">Cadastre-se</a>
+      </p>
+    </form>
+
+    <footer class="login-footer">
+      <a href="#">Formas de Pagamento</a>
+    </footer>
+  </main>
+</div>

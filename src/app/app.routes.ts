@@ -1,3 +1,35 @@
 import { Routes } from '@angular/router';
+import { RegisterComponent } from './pages/register/register.component';
+import { LoginComponent } from './pages/login/login.component';
+import { HomeComponent } from './components/home/home.component';
+import { HomePageComponent } from './pages/home-page/home-page.component';
+import { ProductsComponent } from './components/products/products.component';
+import { ProductDetailsComponent } from './pages/product-details/product-details.component';
 
-export const routes: Routes = [];
+export const routes: Routes = [
+  {
+    path: '',
+    component: HomePageComponent,
+    pathMatch: 'full',
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
+  {
+    path: 'product/:id',
+    component: ProductDetailsComponent,
+  },
+  {
+    path: 'admin/products',
+    component: ProductsComponent,
+  },
+  {
+    path: '**',
+    redirectTo: '',
+  },
+];

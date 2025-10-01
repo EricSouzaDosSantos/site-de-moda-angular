@@ -1,0 +1,107 @@
+<div class="product-details-container" *ngIf="product">
+  <div class="breadcrumb">
+    <button class="back-btn" (click)="goBack()">← Voltar aos produtos</button>
+  </div>
+
+  <div class="product-details">
+    <div class="product-image">
+      <img [src]="product.image" [alt]="product.name" />
+    </div>
+
+    <div class="product-info">
+      <div class="category-badge">{{ product.category }}</div>
+      <h1>{{ product.name }}</h1>
+
+      <div class="rating-section" *ngIf="product.rating && product.reviews">
+        <div class="stars">
+          <span class="rating">⭐ {{ product.rating }}/5</span>
+          <span class="reviews">({{ product.reviews }} avaliações)</span>
+        </div>
+      </div>
+
+      <div class="price-section">
+        <span class="price">{{
+          product.price | currency : "BRL" : "symbol" : "1.2-2" : "pt-BR"
+        }}</span>
+        <span class="installments"
+          >ou 3x de
+          {{
+            product.price / 3 | currency : "BRL" : "symbol" : "1.2-2" : "pt-BR"
+          }}
+          sem juros</span
+        >
+      </div>
+
+      <div class="description">
+        <p>{{ product.fullDescription || product.description }}</p>
+      </div>
+
+      <div
+        class="specifications"
+        *ngIf="product.specifications && product.specifications.length > 0"
+      >
+        <h3>Especificações:</h3>
+        <ul>
+          <li *ngFor="let spec of product.specifications">{{ spec }}</li>
+        </ul>
+      </div>
+
+      <div class="size-selector" *ngIf="product.category === 'Vestuário'">
+        <h3>Tamanho:</h3>
+        <div class="size-options">
+          <button
+            class="size-btn"
+            [class.selected]="selectedSize === size"
+            *ngFor="let size of ['P', 'M', 'G', 'GG']"
+            (click)="selectedSize = size"
+          >
+            {{ size }}
+          </button>
+        </div>
+      </div>
+
+      <div class="quantity-selector">
+        <h3>Quantidade:</h3>
+        <div class="quantity-controls">
+          <button
+            class="qty-btn"
+            (click)="decreaseQuantity()"
+            [disabled]="quantity <= 1"
+          >
+            -
+          </button>
+          <span class="quantity">{{ quantity }}</span>
+          <button
+            class="qty-btn"
+            (click)="increaseQuantity()"
+            [disabled]="quantity >= product.stock!"
+          >
+            +
+          </button>
+        </div>
+      </div>
+
+      <div class="stock-info">
+        <span class="stock" [class.low-stock]="product.stock! < 10">
+          {{ product.stock }} unidades disponíveis
+        </span>
+      </div>
+
+      <div class="action-buttons">
+        <button
+          class="add-to-cart-btn"
+          (click)="addToCart()"
+          [disabled]="product.category === 'Vestuário' && !selectedSize"
+        >
+          Adicionar ao Carrinho
+        </button>
+        <button class="buy-now-btn">Comprar Agora</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="not-found" *ngIf="!product">
+  <h2>Produto não encontrado</h2>
+  <button class="back-btn" (click)="goBack()">← Voltar aos produtos</button>
+</div>

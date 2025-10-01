@@ -1,0 +1,32 @@
+.google-signin-btn {
+  /* Usando as variáveis definidas no componente pai (login) se disponíveis, 
+     ou definindo fallbacks (valores padrão) */
+  --border-color: #dee2e6;
+  --card-background: #ffffff;
+  --text-light-color: #6c757d;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background-color: var(--card-background);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-light-color);
+  cursor: pointer;
+  transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.google-signin-btn:hover {
+  background-color: #f8f9fa;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.google-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 12px;
+}
