@@ -1,0 +1,25 @@
+<section class="products-page">
+  <app-admin-header
+    (onCreateProduct)="onCreateProduct()"
+    (onFilterChange)="onFilterChange($event)"
+    (onDeleteSelected)="onDeleteSelected()"
+    (onSelectAll)="onSelectAll($event)"
+  ></app-admin-header>
+
+  <div class="products-list">
+    <app-product-table
+      [products]="products"
+      [filterText]="filterText"
+      [isAdminMode]="true"
+      (onEditProduct)="onEditProduct($event)"
+    ></app-product-table>
+  </div>
+
+  <app-product-modal
+    [isOpen]="isModalOpen"
+    [product]="selectedProduct"
+    [isEditMode]="isEditMode"
+    (onClose)="onModalClose()"
+    (onSave)="onProductSave($event)"
+  ></app-product-modal>
+</section>

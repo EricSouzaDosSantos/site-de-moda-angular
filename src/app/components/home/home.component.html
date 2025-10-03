@@ -41,13 +41,14 @@
 
   <section class="products-section" aria-labelledby="products-title">
     <h2 id="products-title">Nossos Produtos</h2>
-    <app-product-table></app-product-table>
+    <div class="product-table-container">
+      <app-product-table [isAdminMode]="false"></app-product-table>
+    </div>
   </section>
 
   <section class="newsletter" aria-labelledby="newsletter-title">
     <h2 id="newsletter-title">Receba ofertas</h2>
     <form>
-      <!-- <label for="email" class="sr-only">Digite seu e-mail</label> -->
       <input
         type="email"
         id="email"

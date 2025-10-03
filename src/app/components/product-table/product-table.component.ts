@@ -1,93 +1,94 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  OnChanges,
+  SimpleChanges,
+  OnInit,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Product } from '../../models/product.interface';
+import { ProductService } from '../../services/product.service';
+import { provideIcons, NgIcon } from '@ng-icons/core';
+import { heroEye } from '@ng-icons/heroicons/outline';
+import { mynaEditOne } from '@ng-icons/mynaui/outline';
 
 @Component({
   selector: 'app-product-table',
-  imports: [CommonModule],
+  imports: [CommonModule, NgIcon],
   templateUrl: './product-table.component.html',
   styleUrl: './product-table.component.css',
+  providers: [provideIcons({ heroEye, mynaEditOne })],
 })
-export class ProductTableComponent {
-  products: Product[] = [
-    {
-      id: 1,
-      name: 'Vestido Floral Elegante',
-      price: 89.9,
-      category: 'Vestuário',
-      description: 'Vestido floral com 100% algodão',
-      image: 'https://picsum.photos/400/600?random=1',
-      fullDescription:
-        'Vestido floral elegante confeccionado em 100% algodão de alta qualidade. Perfeito para ocasiões especiais e uso casual. Design moderno com estampa floral delicada.',
-      specifications: [
-        '100% Algodão',
-        'Lavagem à máquina',
-        'Tamanhos: P, M, G, GG',
-      ],
-      stock: 15,
-      rating: 4.5,
-      reviews: 23,
-    },
-    {
-      id: 2,
-      name: 'Camiseta Básica Premium',
-      price: 59.9,
-      category: 'Vestuário',
-      description: 'Camiseta básica preta premium',
-      image: 'https://picsum.photos/400/600?random=2',
-      fullDescription:
-        'Camiseta básica preta premium com tecido de alta qualidade. Essential para qualquer guarda-roupa. Corte moderno e confortável.',
-      specifications: [
-        '95% Algodão, 5% Elastano',
-        'Lavagem à máquina',
-        'Tamanhos: P, M, G, GG, XG',
-      ],
-      stock: 25,
-      rating: 4.2,
-      reviews: 45,
-    },
-    {
-      id: 3,
-      name: 'Jaqueta Jeans Vintage',
-      price: 149.9,
-      category: 'Vestuário',
-      description: 'Jaqueta jeans com estilo vintage',
-      image: 'https://picsum.photos/400/600?random=3',
-      fullDescription:
-        'Jaqueta jeans vintage com lavagem especial e detalhes únicos. Combina perfeitamente com qualquer look casual.',
-      specifications: [
-        '100% Algodão Denim',
-        'Lavagem especial',
-        'Tamanhos: P, M, G, GG',
-      ],
-      stock: 8,
-      rating: 4.8,
-      reviews: 12,
-    },
-    {
-      id: 4,
-      name: 'Bolsa de Couro Artesanal',
-      price: 199.9,
-      category: 'Acessórios',
-      description: 'Bolsa de couro genuíno artesanal',
-      image: 'https://picsum.photos/400/600?random=4',
-      fullDescription:
-        'Bolsa artesanal confeccionada em couro genuíno de alta qualidade. Peça única com acabamento artesanal e design exclusivo.',
-      specifications: [
-        'Couro Genuíno',
-        'Forro em tecido',
-        'Dimensões: 30x25x10cm',
-      ],
-      stock: 5,
-      rating: 4.9,
-      reviews: 8,
-    },
-  ];
+export class ProductTableComponent implements OnInit, OnChanges {
+  @Input() products: Product[] = [];
+  @Input() filterText: string = '';
+  @Input() isAdminMode: boolean = false;
+  @Output() onEditProduct = new EventEmitter<Product>();
 
-  constructor(private router: Router) {}
+  filteredProducts: Product[] = [];
+  selectedProducts: Set<number> = new Set();
+
+  constructor(private router: Router, private productService: ProductService) {}
+
+  ngOnInit(): void {
+    this.loadProducts();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['products'] || changes['filterText']) {
+      this.applyFilter();
+    }
+  }
+
+  private loadProducts(): void {
+    const productsToUse =
+      this.products.length > 0
+        ? this.products
+        : this.productService.getProducts();
+    this.filteredProducts = productsToUse;
+    this.applyFilter();
+  }
+
+  private applyFilter(): void {
+    const productsToFilter =
+      this.products.length > 0
+        ? this.products
+        : this.productService.getProducts();
+
+    if (!this.filterText) {
+      this.filteredProducts = productsToFilter;
+      return;
+    }
+
+    const [searchTerm, category] = this.filterText.split('|');
+
+    this.filteredProducts = this.productService.searchProducts(
+      searchTerm,
+      category
+    );
+  }
 
   navigateToProduct(productId: number): void {
     this.router.navigate(['/product', productId]);
+  }
+
+  editProduct(product: Product, event: Event): void {
+    event.stopPropagation();
+    this.onEditProduct.emit(product);
+  }
+
+  toggleProductSelection(productId: number): void {
+    if (this.selectedProducts.has(productId)) {
+      this.selectedProducts.delete(productId);
+    } else {
+      this.selectedProducts.add(productId);
+    }
+  }
+
+  isProductSelected(productId: number): boolean {
+    return this.selectedProducts.has(productId);
   }
 }

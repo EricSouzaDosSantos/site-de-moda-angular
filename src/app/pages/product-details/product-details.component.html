@@ -1,6 +1,6 @@
 <div class="product-details-container" *ngIf="product">
   <div class="breadcrumb">
-    <button class="back-btn" (click)="goBack()">← Voltar aos produtos</button>
+    <button class="back-btn" (click)="goBack()">← Voltar </button>
   </div>
 
   <div class="product-details">
@@ -97,6 +97,75 @@
         </button>
         <button class="buy-now-btn">Comprar Agora</button>
       </div>
+    </div>
+  </div>
+
+  <div
+    class="reviews-section"
+    *ngIf="product.customerReviews && product.customerReviews.length > 0"
+  >
+    <div class="reviews-header">
+      <h2>Avaliações dos Clientes</h2>
+      <div class="reviews-summary">
+        <div class="average-rating">
+          <div class="rating-display">
+            <span class="rating-number">{{ product.rating }}</span>
+            <div class="stars-display">
+              <span
+                *ngFor="let star of getStars(product.rating!)"
+                class="star"
+                [class.full]="star === 'full'"
+                [class.half]="star === 'half'"
+                [class.empty]="star === 'empty'"
+              >
+                ★
+              </span>
+            </div>
+          </div>
+          <span class="total-reviews"
+            >Baseado em {{ product.reviews }} avaliações</span
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="reviews-list">
+      <div class="review-card" *ngFor="let review of product.customerReviews">
+        <div class="review-header">
+          <div class="customer-info">
+            <div class="customer-avatar">
+              {{ review.customerName.charAt(0) }}
+            </div>
+            <div class="customer-details">
+              <span class="customer-name">{{ review.customerName }}</span>
+              <div class="review-meta">
+                <div class="review-stars">
+                  <span
+                    *ngFor="let star of getStars(review.rating)"
+                    class="star small"
+                    [class.full]="star === 'full'"
+                    [class.half]="star === 'half'"
+                    [class.empty]="star === 'empty'"
+                  >
+                    ★
+                  </span>
+                </div>
+                <span class="review-date">{{ formatDate(review.date) }}</span>
+                <span class="verified-badge" *ngIf="review.verified"
+                  >✓ Compra verificada</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="review-content">
+          <p>{{ review.comment }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="write-review-section">
+      <button class="write-review-btn">Escrever Avaliação</button>
     </div>
   </div>
 </div>

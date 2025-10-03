@@ -37,9 +37,6 @@ main {
   height: auto;
 }
 
-/* ============================= */
-/* VEJA TAMBÉM */
-/* ============================= */
 .see-also {
   text-align: center;
   padding: 2rem 1rem;
@@ -166,6 +163,13 @@ main {
 .products-section {
   padding: 2rem 0;
   background: #fff;
+  display: flex;
+  flex-direction: column;
+}
+.product-table-container {
+  margin: auto;
+
+  width: 90%;
 }
 
 .products-section h2 {

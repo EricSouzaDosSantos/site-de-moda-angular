@@ -1,13 +1,26 @@
 <section class="product-list">
   <div
     class="product-card"
-    *ngFor="let product of products"
+    *ngFor="let product of filteredProducts"
     (click)="navigateToProduct(product.id)"
     role="button"
     tabindex="0"
     (keydown.enter)="navigateToProduct(product.id)"
     (keydown.space)="navigateToProduct(product.id)"
+    [class.selected]="isProductSelected(product.id)"
   >
+    <div
+      *ngIf="isAdminMode"
+      class="selection-checkbox"
+      (click)="toggleProductSelection(product.id); $event.stopPropagation()"
+    >
+      <input
+        type="checkbox"
+        [checked]="isProductSelected(product.id)"
+        (change)="toggleProductSelection(product.id)"
+      />
+    </div>
+
     <img [src]="product.image" [alt]="product.name" />
 
     <div class="product-info">
@@ -29,5 +42,27 @@
         </span>
       </div>
     </div>
+
+    <div *ngIf="isAdminMode" class="admin-actions">
+      <button
+        class="edit-btn"
+        (click)="editProduct(product, $event)"
+        title="Editar produto"
+      >
+        <ng-icon name="myna-edit-one"></ng-icon>
+      </button>
+      <button
+        class="view-btn"
+        (click)="navigateToProduct(product.id); $event.stopPropagation()"
+        title="Ver detalhes"
+      >
+        <ng-icon name="hero-eye"></ng-icon>
+      </button>
+    </div>
+  </div>
+
+  <div class="no-products" *ngIf="filteredProducts.length === 0">
+    <h3>Nenhum produto encontrado</h3>
+    <p>Tente ajustar os filtros ou adicione novos produtos.</p>
   </div>
 </section>

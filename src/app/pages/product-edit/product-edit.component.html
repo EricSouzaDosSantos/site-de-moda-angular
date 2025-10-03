@@ -1,0 +1,16 @@
+<div class="product-edit-page">
+  <div class="loading-container" *ngIf="isLoading">
+    <div class="loading-spinner"></div>
+    <p>Carregando produto...</p>
+  </div>
+
+  <div class="form-container" *ngIf="!isLoading">
+    <app-product-form
+      [product]="product"
+      [isEditMode]="isEditMode"
+      (onSave)="onProductSave($event)"
+      (onCancel)="onCancel()"
+    >
+    </app-product-form>
+  </div>
+</div>

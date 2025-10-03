@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { GoogleSigninButtonComponent } from '../../components/ui/google-signin-button/google-signin-button.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,8 +9,20 @@ import { GoogleSigninButtonComponent } from '../../components/ui/google-signin-b
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  // Nenhuma lógica de formulário necessária
+  @Input() email: string = '';
+  @Input() password: string = '';
+
   onGoogleSignIn(): void {
     console.log('Iniciando login com Google...');
+  }
+
+  constructor(private router: Router) {}
+
+  onLogin(): void {
+    if(this.email == "admin@gmail.com" && this.password == "admin"){
+    this.router.navigate(['/admin/products']);
+    }else if(this.email == "teste@gmail.com)" && this.password == "teste"){
+      this.router.navigate(['/']);
+    }
   }
 }

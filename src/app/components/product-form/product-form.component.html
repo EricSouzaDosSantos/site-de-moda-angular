@@ -1,25 +1,189 @@
-<section class="product-form">
-  <form>
-    <div class="form-group">
-      <label for="category">Categoria</label>
-      <input id="category" type="text" placeholder="Ex: Eletrônicos" />
+<div class="product-form-container">
+  <!-- <div class="form-header">
+    <h2>{{ isEditMode ? "Editar Produto" : "Cadastrar Novo Produto" }}</h2>
+    <button type="button" class="close-btn" (click)="cancel()">✕</button>
+  </div> -->
+
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="product-form">
+    <div class="form-grid">
+      <div class="main-section">
+        <h3>Informações Básicas</h3>
+
+        <div class="form-group">
+          <label for="name">Nome do Produto *</label>
+          <input
+            id="name"
+            type="text"
+            formControlName="name"
+            placeholder="Ex: Vestido Floral Elegante"
+            [class.error]="isFieldInvalid('name')"
+          />
+          <span class="error-message" *ngIf="isFieldInvalid('name')">
+            {{ getFieldError("name") }}
+          </span>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="category">Categoria *</label>
+            <select
+              id="category"
+              formControlName="category"
+              [class.error]="isFieldInvalid('category')"
+            >
+              <option value="">Selecione uma categoria</option>
+              <option *ngFor="let cat of categories" [value]="cat">
+                {{ cat }}
+              </option>
+            </select>
+            <span class="error-message" *ngIf="isFieldInvalid('category')">
+              {{ getFieldError("category") }}
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label for="price">Preço (R$) *</label>
+            <input
+              id="price"
+              type="number"
+              step="0.01"
+              formControlName="price"
+              placeholder="99.90"
+              [class.error]="isFieldInvalid('price')"
+            />
+            <span class="error-message" *ngIf="isFieldInvalid('price')">
+              {{ getFieldError("price") }}
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="description">Descrição Curta *</label>
+          <textarea
+            id="description"
+            formControlName="description"
+            placeholder="Descrição resumida do produto (aparece nos cards)"
+            rows="3"
+            [class.error]="isFieldInvalid('description')"
+          ></textarea>
+          <span class="error-message" *ngIf="isFieldInvalid('description')">
+            {{ getFieldError("description") }}
+          </span>
+        </div>
+
+        <div class="form-group">
+          <label for="fullDescription">Descrição Completa</label>
+          <textarea
+            id="fullDescription"
+            formControlName="fullDescription"
+            placeholder="Descrição detalhada do produto (aparece na página de detalhes)"
+            rows="5"
+          ></textarea>
+        </div>
+      </div>
+
+      <div class="image-section">
+        <h3>Imagem do Produto</h3>
+
+        <div class="image-upload">
+          <div class="image-preview" *ngIf="imagePreview">
+            <img [src]="imagePreview" alt="Preview" />
+            <button
+              type="button"
+              class="remove-image"
+              (click)="imagePreview = null"
+            >
+              <span>✕</span>
+            </button>
+          </div>
+
+          <div class="upload-area" *ngIf="!imagePreview">
+            <input
+              type="file"
+              id="imageFile"
+              accept="image/*"
+              (change)="onFileSelected($event)"
+              hidden
+            />
+            <label for="imageFile" class="upload-label">
+              <div class="upload-content">
+                <!-- <span class="upload-icon"></span> -->
+                <span class="upload-text">Clique para selecionar imagem</span>
+                <span class="upload-hint">PNG, JPG ou JPEG até 5MB</span>
+              </div>
+            </label>
+          </div>
+
+          <button
+            type="button"
+            class="change-image-btn"
+            *ngIf="imagePreview"
+            (click)="imagePreview = null"
+          >
+            Alterar Imagem
+          </button>
+        </div>
+      </div>
     </div>
 
-    <div class="form-group">
-      <label for="name">Nome</label>
-      <input id="name" type="text" placeholder="Ex: Smartphone" />
+    <div class="specifications-section">
+      <div class="section-header">
+        <h3>Especificações Técnicas</h3>
+        <button type="button" class="add-spec-btn" (click)="addSpecification()">
+          + Adicionar Especificação
+        </button>
+      </div>
+
+      <div class="specifications-list" formArrayName="specifications">
+        <div
+          *ngFor="let spec of specifications.controls; let i = index"
+          class="spec-item"
+        >
+          <input
+            type="text"
+            [formControlName]="i"
+            placeholder="Ex: 100% Algodão"
+            class="spec-input"
+          />
+          <button
+            type="button"
+            class="remove-spec-btn"
+            (click)="removeSpecification(i)"
+          >
+            ✕
+          </button>
+        </div>
+      </div>
     </div>
 
-    <div class="form-group">
-      <label for="description">Descrição</label>
-      <textarea id="description" placeholder="Escreva a descrição"></textarea>
+    <div class="additional-info">
+      <h3>Informações Adicionais</h3>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="stock">Estoque *</label>
+          <input
+            id="stock"
+            type="number"
+            formControlName="stock"
+            placeholder="0"
+            min="0"
+            [class.error]="isFieldInvalid('stock')"
+          />
+          <span class="error-message" *ngIf="isFieldInvalid('stock')">
+            {{ getFieldError("stock") }}
+          </span>
+        </div>
+      </div>
     </div>
 
-    <div class="form-group">
-      <label for="price">Preço</label>
-      <input id="price" type="number" placeholder="Ex: 1999.90" />
+    <div class="form-actions">
+      <button type="button" class="btn-cancel" (click)="cancel()">
+        Cancelar
+      </button>
+      <button type="submit" class="btn-submit" [disabled]="productForm.invalid">
+        {{ isEditMode ? "Atualizar Produto" : "Cadastrar Produto" }}
+      </button>
     </div>
-
-    <button type="submit" class="btn-submit">Cadastrar Produto</button>
   </form>
-</section>
+</div>

@@ -1,3 +1,12 @@
+export interface Review {
+  id: number;
+  customerName: string;
+  rating: number;
+  comment: string;
+  date: string;
+  verified?: boolean;
+}
+
 export interface Product {
   id: number;
   name: string;
@@ -10,4 +19,5 @@ export interface Product {
   stock?: number;
   rating?: number;
   reviews?: number;
+  customerReviews?: Review[];
 }
