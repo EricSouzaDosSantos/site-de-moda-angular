@@ -1,0 +1,53 @@
+<div class="cabecalho-admin">
+  <div class="container-cabecalho-admin">
+    <div class="cabecalho-top">
+      <div class="secao-titulo">
+        <h1>Gerenciar Produtos</h1>
+        <p>Administre seu catálogo de produtos</p>
+      </div>
+
+      <div class="acoes">
+        <button class="create-btn" (click)="createProduct()">
+          <span class="icon">+</span>
+          Cadastrar Produto
+        </button>
+      </div>
+    </div>
+
+    <div class="toolbar">
+      <div class="search-filters">
+        <div class="search-box">
+          <input
+            type="text"
+            placeholder="Buscar produtos... "
+            [(ngModel)]="searchTerm"
+            (input)="onSearchChange()"
+            class="search-input"
+          />
+    
+        </div>
+
+        <select
+          [(ngModel)]="selectedCategory"
+          (change)="onCategoryChange()"
+          class="category-filter"
+        >
+          <option *ngFor="let cat of categories" [value]="cat.value">
+            {{ cat.label }}
+          </option>
+        </select>
+      </div>
+
+      <div class="bulk-actions">
+        <button
+          class="delete-btn"
+          (click)="deleteSelected()"
+          [disabled]="!isAllSelected"
+        >
+          <span class="icon"></span>
+          Excluir Selecionados
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
