@@ -6,7 +6,7 @@ import { provideIcons, NgIcon } from '@ng-icons/core';
 
 @Component({
   selector: 'app-admin-header',
-  imports: [CommonModule, FormsModule, NgIcon],
+  imports: [CommonModule, FormsModule],
   templateUrl: './admin-header.component.html',
   styleUrl: './admin-header.component.css',
   providers: [provideIcons({ heroMagnifyingGlass })],

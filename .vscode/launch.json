@@ -1,20 +1,12 @@
 {
-  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "name": "ng serve",
-      "type": "chrome",
-      "request": "launch",
-      "preLaunchTask": "npm: start",
-      "url": "http://localhost:4200/"
-    },
-    {
-      "name": "ng test",
-      "type": "chrome",
-      "request": "launch",
-      "preLaunchTask": "npm: test",
-      "url": "http://localhost:9876/debug.html"
-    }
-  ]
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "type": "msedge",
+            "request": "launch",
+            "name": "Open promotions.component.html",
+            "file": "c:\\Users\\saman\\OneDrive\\Área de Trabalho\\site-de-moda-angular\\src\\app\\components\\promotions\\promotions.component.html"
+        }
+    ]
 }

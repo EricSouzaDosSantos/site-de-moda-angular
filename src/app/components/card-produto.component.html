@@ -1,0 +1,16 @@
+<div class="card">
+    <div class="card-image">
+        <img [src]="product.imagemUrl" [alt]="'Foto de ' + product.nome">
+        
+    <span class="badge" *ngIf="product.precoPromotional" [class.half-off]="product.desconto === 50">{{ product.desconto }}% OFF</span>
+    </div>
+
+    <div class="card-body">
+        <h3 class="card-title">{{ product.nome }}</h3>
+                <p class="card-price">
+                    <span *ngIf="product.precoPromotional" class="original-price">{{ product.preco | currency:'BRL':'symbol':'1.2-2' }}</span>
+                    <span class="current-price">{{ (product.precoPromotional || product.preco) | currency:'BRL':'symbol':'1.2-2' }}</span>
+                </p>
+        <button class="add-to-cart-btn">Comprar</button>
+    </div>
+</div>

@@ -1,0 +1,71 @@
+
+
+.product-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  position: relative; 
+  background-color: #fff;
+}
+
+
+.promotions-hero {
+  padding: 48px 0 24px;
+  text-align: center;
+}
+
+.promotions-hero h1 {
+  font-size: 2rem;
+  margin: 0 0 12px;
+}
+
+.promotions-hero p { color: #666; margin: 0 0 8px; }
+
+.product-table-container { max-width: 1200px; margin: 0 auto; padding: 24px 16px; }
+
+.filters-and-products { display:flex; gap:24px; align-items:flex-start; }
+
+.sidebar-filters { width: 220px; background: #fff; padding: 16px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.04); }
+
+.sidebar-filters h3 { margin-top: 0; font-size: 1rem; }
+
+.sidebar-filters ul { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px; }
+
+.sidebar-filters button { background:transparent; border:1px solid transparent; padding:8px 10px; text-align:left; border-radius:6px; cursor:pointer; }
+
+.sidebar-filters button.active { background:#000; color:#fff; }
+
+.product-list-grid { flex:1; display:grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap:16px; align-items: start; }
+
+@media (max-width: 1100px) {
+  .product-table-container { padding: 16px; }
+}
+
+@media (max-width: 900px) {
+  .filters-and-products { flex-direction:column; }
+  .sidebar-filters { width:100%; }
+  .product-list-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
+}
+
+.hero { padding: 36px 0; background: linear-gradient(135deg, #fff, #fafafa); }
+.hero .center { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
+.hero h1 { margin: 0; font-size: 2rem; }
+.subtitle { color: #6b7280; margin-top: 8px; }
+
+.products-toolbar { display:flex; gap:16px; align-items:center; justify-content:space-between; max-width:1200px; margin: 0 auto 16px; padding: 0 16px; }
+.products-toolbar .search input { padding:10px 12px; border-radius:8px; border:1px solid #e5e7eb; min-width:260px; }
+.products-toolbar .sort { display:flex; align-items:center; gap:8px; }
+.products-toolbar .result-count { color:#6b7280; font-size:0.95rem; }
+
+.category-chips { display:flex; gap:8px; align-items:center; padding: 0 16px; max-width:1200px; margin: 0 auto 18px; }
+.chip { background:#fff; border:1px solid #e5e7eb; padding:8px 12px; border-radius:999px; cursor:pointer; }
+.chip.active, .chip:hover { background:#111827; color:#fff; border-color:#111827; }
+
+.product-list-grid { padding: 0 16px; }
+
+.products-section { padding: 2rem 0; background: #fff; display: flex; flex-direction: column; }
+.product-table-container { margin: auto; width: 100%; }
+.products-section h2 { text-align: center; font-size: 1.6rem; margin-bottom: 1rem; color: #111; font-weight: 600; }

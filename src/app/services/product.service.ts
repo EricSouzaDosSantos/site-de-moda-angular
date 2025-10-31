@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { Product } from '../models/product.interface';
 
 @Injectable({
@@ -6,6 +7,7 @@ import { Product } from '../models/product.interface';
 })
 export class ProductService {
   private readonly STORAGE_KEY = 'fashion-store-products';
+  private isBrowser: boolean;
 
   private defaultProducts: Product[] = [
     {
@@ -167,8 +169,12 @@ export class ProductService {
     },
   ];
 
-  constructor() {
-    this.initializeDefaultProducts();
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
+    // só inicializa/usa localStorage se estivermos no browser
+    if (this.isBrowser) {
+      this.initializeDefaultProducts();
+    }
   }
 
   private initializeDefaultProducts(): void {
@@ -179,6 +185,8 @@ export class ProductService {
   }
 
   getProducts(): Product[] {
+    if (!this.isBrowser) return [];
+
     try {
       const products = localStorage.getItem(this.STORAGE_KEY);
       return products ? JSON.parse(products) : [];
@@ -248,6 +256,8 @@ export class ProductService {
   }
 
   private saveProducts(products: Product[]): void {
+    if (!this.isBrowser) return;
+
     try {
       localStorage.setItem(this.STORAGE_KEY, JSON.stringify(products));
     } catch (error) {

@@ -6,6 +6,7 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
 import { ProductEditComponent } from './pages/product-edit/product-edit.component';
+import { PromotionsComponent } from './components/promotions/promotions.component';
 
 export const routes: Routes = [
   {
@@ -38,7 +39,8 @@ export const routes: Routes = [
     component: ProductEditComponent,
   },
   {
-    path: '**',
-    redirectTo: '',
+    path: "promotional",
+    component: PromotionsComponent
   },
+ 
 ];
