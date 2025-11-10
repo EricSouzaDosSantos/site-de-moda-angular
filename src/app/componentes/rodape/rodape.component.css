@@ -1,0 +1,153 @@
+.rodape {
+  background: var(--cor-de-fundo, #1a1a1a);
+  color: var(--cor-texto, #111111);
+  /*padding-top: 4rem;*/
+}
+
+.conteudo-rodape {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 2rem 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.secao-rodape h3 {
+  color: var(--cor-primaria);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.secao-rodape h4 {
+  color: var(--cor-texto);
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.secao-rodape p {
+  color: var(--cor-texto, #111111);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.secao-rodape ul {
+  list-style: none;
+  padding: 0;
+}
+
+.secao-rodape ul li {
+  margin-bottom: 0.5rem;
+}
+
+.secao-rodape ul li a {
+  color: var(--cor-texto, #111111);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.secao-rodape ul li a:hover {
+  color: var(--cor-primaria, #ff6b6b);
+}
+
+.links-sociais {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.link-social {
+  display: inline-block;
+  font-size: 1.5rem;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.link-social:hover {
+  transform: scale(1.2);
+}
+
+.info-contato p {
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.rodape-inferior {
+  background: rgba(0, 0, 0, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.conteudo-rodape-inferior {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.rodape-inferior p {
+  color: var(--cor-texto, #111111);
+  margin: 0;
+}
+
+.formas-pagamento {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--cor-texto, #111111);
+}
+
+.icones-pagamento {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.icone-pagamento {
+  font-size: 1.2rem;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.icone-pagamento:hover {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .conteudo-rodape {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    padding: 2rem 1rem;
+    gap: 1.5rem;
+  }
+
+  .conteudo-rodape-inferior {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .formas-pagamento {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .conteudo-rodape {
+    grid-template-columns: 1fr;
+    padding: 1.5rem 1rem;
+  }
+
+  .secao-rodape h3 {
+    font-size: 1.3rem;
+  }
+
+  .secao-rodape h4 {
+    font-size: 1.1rem;
+  }
+}

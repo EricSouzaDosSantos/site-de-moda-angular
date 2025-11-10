@@ -1,53 +1,41 @@
-<div class="cabecalho-admin">
-  <div class="container-cabecalho-admin">
-    <div class="cabecalho-top">
-      <div class="secao-titulo">
-        <h1>Gerenciar Produtos</h1>
-        <p>Administre seu catálogo de produtos</p>
-      </div>
+<header [ngClass]="{ scroll: escrolado }">
+  <div class="div-topo">
+    <span>70% DE DESCONTO COM COMPRA ACIMA DE 300 REAIS</span>
+  </div>
 
-      <div class="acoes">
-        <button class="create-btn" (click)="createProduct()">
-          <span class="icon">+</span>
-          Cadastrar Produto
-        </button>
-      </div>
+  <div class="cabecalho-principal">
+    <div class="logo">
+      <a href="/" class="link-logo">
+        Lunna Moda
+      </a>
     </div>
 
-    <div class="toolbar">
-      <div class="search-filters">
-        <div class="search-box">
-          <input
-            type="text"
-            placeholder="Buscar produtos... "
-            [(ngModel)]="searchTerm"
-            (input)="onSearchChange()"
-            class="search-input"
-          />
-    
-        </div>
+    <div class="busca">
+      <input type="text" placeholder="Pesquisar produtos..." />
+      <button>
+        <ng-icon name="heroMagnifyingGlass" size="24"></ng-icon>
+      </button>
+    </div>
 
-        <select
-          [(ngModel)]="selectedCategory"
-          (change)="onCategoryChange()"
-          class="category-filter"
-        >
-          <option *ngFor="let cat of categories" [value]="cat.value">
-            {{ cat.label }}
-          </option>
-        </select>
-      </div>
-
-      <div class="bulk-actions">
-        <button
-          class="delete-btn"
-          (click)="deleteSelected()"
-          [disabled]="!isAllSelected"
-        >
-          <span class="icon"></span>
-          Excluir Selecionados
-        </button>
-      </div>
+    <div class="acoes">
+      <a routerLink="/login" title="Entrar">
+        <ng-icon name="heroUser" size="34"></ng-icon>
+        <span>Entrar</span>
+      </a>
+      <a href="#" title="Carrinho">
+        <ng-icon name="heroShoppingBag" size="34"></ng-icon>
+        <span>Carrinho</span>
+      </a>
     </div>
   </div>
-</div>
+
+  <nav class="menu-navegacao">
+    <ul>
+      <li><a routerLink="/">Início</a></li>
+      <li><a href="#">Acessórios</a></li>
+      <li><a href="#">Vestuário</a></li>
+      <li><a href="#">Inverno</a></li>
+      <li><a href="#">Atendimento</a></li>
+    </ul>
+  </nav>
+</header>

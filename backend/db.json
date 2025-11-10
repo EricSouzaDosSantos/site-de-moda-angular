@@ -1,0 +1,83 @@
+{
+  "produtos": [
+    {
+      "id": "1",
+      "nome": "Vestido Floral Primavera",
+      "preco": 179.9,
+      "categoria": "Vestuário",
+      "descricao": "Vestido leve com estampa floral, perfeito para dias quentes. Tecido 100% viscose, caimento fluido.",
+      "imagem": "assets/img/img-produto.jpeg",
+      "especificacoes": [
+        "Tecido: Viscose",
+        "Corte: A-line",
+        "Lavagem: À mão"
+      ],
+      "estoque": 12
+    },
+    {
+      "id": "2",
+      "nome": "Jaqueta Jeans Oversized",
+      "preco": 249,
+      "categoria": "Vestuário",
+      "descricao": "Jaqueta jeans em lavagem média com acabamento desfiado. Bolsos frontais e fechamento em botões.",
+      "imagem": "assets/img/img-produto.jpeg",
+      "especificacoes": [
+        "Composição: Algodão 98% / Elastano 2%",
+        "Forro: Sem forro"
+      ],
+      "estoque": 8
+    },
+    {
+      "id": "3",
+      "nome": "Camisa Social Masculina Slim",
+      "preco": 129.5,
+      "categoria": "Vestuário",
+      "descricao": "Camisa social com corte slim, botões reforçados e gola italiana. Ideal para escritório e eventos.",
+      "imagem": "assets/img/img-produto.jpeg",
+      "especificacoes": [
+        "Algodão: 100%",
+        "Gola: Italiana"
+      ],
+      "estoque": 20
+    },
+    {
+      "id": "4",
+      "nome": "Calça Jogger Confort",
+      "preco": 99,
+      "categoria": "Vestuário",
+      "descricao": "Calça jogger com cintura elástica e punhos. Malha macia, ótima para uso diário.",
+      "imagem": "assets/img/img-produto.jpeg",
+      "especificacoes": [
+        "Material: Moletom leve",
+        "Cuidado: Lavar à máquina com cores similares"
+      ],
+      "estoque": 30
+    },
+    {
+      "id": "5",
+      "nome": "Bolsa Tiracolo Básica",
+      "preco": 149.9,
+      "categoria": "Acessórios",
+      "descricao": "Bolsa tiracolo compacta com alça ajustável e interior forrado. Fecho magnético.",
+      "imagem": "assets/img/img-produto.jpeg",
+      "especificacoes": [
+        "Material: Sintético",
+        "Fecho: Magnético"
+      ],
+      "estoque": 16
+    },
+    {
+      "id": "6",
+      "nome": "Tênis Casual Branco",
+      "preco": 199,
+      "categoria": "Calçados",
+      "descricao": "Tênis casual com solado antiderrapante e palmilha macia. Versátil para looks do dia a dia.",
+      "imagem": "assets/img/img-produto.jpeg",
+      "especificacoes": [
+        "Solado: Borracha",
+        "Palmilha: Eva"
+      ],
+      "estoque": 25
+    }
+  ]
+}

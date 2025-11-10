@@ -1,0 +1,52 @@
+<div class="produto-container" *ngIf="produto as p">
+  <div class="breadcrumb">
+    <button class="voltar-btn" (click)="voltar()">← Voltar</button>
+  </div>
+
+  <div class="detalhes-produto">
+    <div class="imagem-produto">
+      <img [src]="p.imagem" [alt]="p.nome" />
+    </div>
+
+    <div class="info-produto">
+      <div class="categoria">{{ p.categoria }}</div>
+      <h1>{{ p.nome }}</h1>
+
+      <div class="preco">
+        <span class="valor">R$: {{ p.preco }}</span>
+        <span class="parcelas">
+          ou 3x de R$ {{ p.preco ? p.preco / 3 : 0 }} sem juros
+        </span>
+      </div>
+
+      <div class="descricao">
+        <p>{{ p.descricao }}</p>
+      </div>
+
+      <div class="especificacoes" *ngIf="p.especificacoes?.length">
+        <h3>Especificações</h3>
+        <ul>
+          <li *ngFor="let item of p.especificacoes">{{ item }}</li>
+        </ul>
+      </div>
+
+      <div class="estoque-info">
+        <span class="estoque" [class.baixo]="(p.estoque ?? 0) < 10">
+          {{ p.estoque ?? 0 }} unidades disponíveis
+        </span>
+      </div>
+
+      <div class="botoes">
+        <button class="btn-add" (click)="adicionarNoCarrinho()">
+          Adicionar ao Carrinho
+        </button>
+        <button class="btn-comprar">Comprar Agora</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="nao-encontrado" *ngIf="!produto">
+  <h2>Produto não encontrado</h2>
+  <button class="voltar-btn" (click)="voltar()">← Voltar aos produtos</button>
+</div>

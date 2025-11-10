@@ -1,0 +1,146 @@
+<div class="pagina-admin">
+  <section class="painel-cabecalho">
+    <h1>Gerenciamento de Produtos</h1>
+<!--    <div class="acoes">-->
+<!--      <button type="button" class="botao secundario" (click)="resetarformsPraAdicionar()">-->
+<!--        Novo Produto-->
+<!--      </button>-->
+<!--    </div>-->
+  </section>
+
+  <section class="painel-formulario">
+    <form (ngSubmit)="salvarProduto()" #formulario="ngForm">
+      <div class="grade-formulario">
+        <label>
+          Nome
+          <input
+            type="text"
+            name="nome"
+            [(ngModel)]="produtoFormulario.nome"
+            required
+          />
+        </label>
+
+        <label>
+          Preço
+          <input
+            type="number"
+            name="preco"
+            [(ngModel)]="produtoFormulario.preco"
+            min="0"
+            step="0.01"
+            required
+          />
+        </label>
+
+        <label>
+          Categoria
+          <input
+            type="text"
+            name="categoria"
+            [(ngModel)]="produtoFormulario.categoria"
+          />
+        </label>
+
+        <label>
+          Estoque
+          <input
+            type="number"
+            name="estoque"
+            [(ngModel)]="produtoFormulario.estoque"
+            min="0"
+          />
+        </label>
+      </div>
+
+      <label>
+        Descrição
+        <textarea
+          name="descricao"
+          [(ngModel)]="produtoFormulario.descricao"
+          rows="3"
+        ></textarea>
+      </label>
+
+      <label>
+        Especificações (uma por linha)
+        <textarea
+          name="especificacoes"
+          [(ngModel)]="produtoFormulario.especificacoesTexto"
+          rows="4"
+        ></textarea>
+      </label>
+
+      <div class="rodape-formulario">
+        <button type="submit" class="botao primario">
+          {{ produtoFormulario.id ? 'Atualizar' : 'Criar' }} Produto
+        </button>
+      <button type="button" class="botao secundario" (click)="resetarformsPraAdicionar()">
+        {{ produtoFormulario.id ? 'Cancelar' : 'Resetar' }}
+      </button>
+      </div>
+
+    </form>
+
+<!--    <div class="mensagens">-->
+<!--      <p class="sucesso" *ngIf="mensagemSucesso">{{ mensagemSucesso }}</p>-->
+<!--      <p class="erro" *ngIf="mensagemErro">{{ mensagemErro }}</p>-->
+<!--    </div>-->
+  </section>
+
+  <section class="painel-lista">
+    <header class="cabecalho-lista">
+      <h2>Produtos cadastrados</h2>
+      <span *ngIf="carregando">Carregando...</span>
+    </header>
+
+    <div class="tabela-container" *ngIf="produtos.length; else listaVazia">
+      <table>
+        <thead>
+        <tr>
+          <th>Imagem</th>
+          <th>Nome</th>
+          <th>Categoria</th>
+          <th>Preço</th>
+          <th>Estoque</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let produto of produtos">
+          <td class="coluna-imagem">
+            <img [src]="produto.imagem" [alt]="produto.nome"/>
+          </td>
+          <td>{{ produto.nome }}</td>
+          <td>{{ produto.categoria }}</td>
+          <td>R$ {{ produto.preco | number: '1.2-2' }}</td>
+          <td>{{ produto.estoque ?? 0 }}</td>
+          <td class="acoes-linha">
+            <button
+              type="button"
+              class="botao tabela"
+              (click)="editarProduto(produto)"
+            >
+              Editar
+            </button>
+            <button
+              type="button"
+              class="botao alerta"
+              (click)="removerProduto(produto)"
+            >
+              Excluir
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <ng-template #listaVazia>
+      <div class="lista-vazia">
+        <p>Nenhum produto cadastrado no momento.</p>
+      </div>
+    </ng-template>
+  </section>
+</div>
+

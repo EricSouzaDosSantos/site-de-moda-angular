@@ -1,0 +1,57 @@
+<section class="lista-produtos-container">
+  <button
+    class="seta-esquerda"
+    (click)="voltar()"
+    [disabled]="!podeVoltar() || animando"
+    aria-label="Anterior"
+  >
+    ‹
+  </button>
+
+  <section
+    class="lista-produtos"
+    [style.--card-width.px]="larguraCartao"
+    [style.--gap.px]="espacamento"
+    [style.--columns]="tamanhoPagina"
+  >
+    <div
+      class="track"
+      [class.center]="produtosFiltrados.length <= tamanhoPagina"
+      [style.transform]="'translateX(' + -indiceAtual * passo + 'px)'"
+      [style.gap.px]="espacamento"
+    >
+      <div
+        class="card-produto"
+        *ngFor="let produto of produtosFiltrados"
+        (click)="verProduto(produto.id)"
+      >
+        <img [src]="produto.imagem" [alt]="produto.nome" />
+
+        <div class="info-produto">
+          <h3>{{ produto.nome }}</h3>
+          <p class="preco">R$: {{ produto.preco }}</p>
+          <p>Categoria: {{ produto.categoria }}</p>
+          <p>{{ produto.descricao }}</p>
+        </div>
+
+        <div *ngIf="modoAdmin" class="acoes-admin">
+          <button (click)="editarProduto(produto, $event)">Editar</button>
+          <button (click)="verProduto(produto.id)">Ver</button>
+        </div>
+      </div>
+
+      <div class="sem-produtos" *ngIf="produtosFiltrados.length === 0">
+        <h3>Nenhum produto encontrado</h3>
+      </div>
+    </div>
+  </section>
+
+  <button
+    class="seta-direita"
+    (click)="avancar()"
+    [disabled]="!podeAvancar() || animando"
+    aria-label="Próximo"
+  >
+    ›
+  </button>
+</section>

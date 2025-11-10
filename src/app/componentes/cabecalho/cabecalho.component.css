@@ -1,0 +1,136 @@
+header {
+  width: 100%;
+}
+.div-topo {
+  background-color: #000;
+  color: #fff;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: bold;
+  padding: 0.4rem 0;
+}
+
+.cabecalho-principal {
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 1rem;
+  background-color: #f8f8f8;
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #000;
+}
+
+.link-logo {
+  text-decoration: none;
+  color: inherit;
+}
+
+.busca {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  overflow: hidden;
+  width: 280px;
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.busca:focus-within {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.busca input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background-color: #fff;
+}
+
+.busca button {
+  background-color: #000;
+  border: none;
+  color: #fff;
+  padding: 0.5rem 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease-in-out;
+}
+
+.busca button:hover {
+  background-color: #444;
+}
+
+
+.acoes {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.acoes a {
+  text-decoration: none;
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.menu-navegacao {
+  background-color: #000;
+}
+
+.menu-navegacao ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 0.6rem 0;
+  gap: 3rem;
+}
+
+.menu-navegacao a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.menu-navegacao a:hover {
+  text-decoration: underline;
+}
+
+.scroll .cabecalho-principal {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.div-topo,
+.menu-navegacao {
+  transition: opacity 0.3s ease, height 0.3s ease, padding 0.3s ease;
+}
+
+.scroll .div-topo,
+.scroll .menu-navegacao {
+  opacity: 0;
+  height: 0;
+  padding: 0;
+  overflow: hidden;
+}

@@ -1,0 +1,240 @@
+.produto-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 2rem 4rem;
+}
+
+.breadcrumb {
+  margin-bottom: 2rem;
+}
+
+.voltar-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  border: 1px solid var(--cor-borda);
+  color: var(--cor-texto);
+  font-size: 0.95rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease,
+    transform 0.2s ease;
+}
+
+.voltar-btn:hover,
+.voltar-btn:focus-visible {
+  background: var(--cor-primaria);
+  border-color: var(--cor-primaria);
+  color: var(--cor-rodape-texto);
+  transform: translateY(-1px);
+}
+
+.detalhes-produto {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  background: var(--cor-fundo-card);
+  padding: 2.5rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--cor-borda);
+  box-shadow: 0 20px 60px rgba(17, 17, 17, 0.08);
+}
+
+.imagem-produto {
+  position: relative;
+}
+
+.imagem-produto::before {
+  content: '';
+  position: absolute;
+  inset: 5%;
+  border-radius: var(--radius);
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.05),
+    rgba(0, 0, 0, 0.01)
+  );
+  z-index: 0;
+}
+
+.imagem-produto img {
+  width: 100%;
+  display: block;
+  border-radius: var(--radius);
+  position: relative;
+  z-index: 1;
+}
+
+.info-produto h1 {
+  font-size: clamp(2rem, 2.4vw, 2.6rem);
+  margin-bottom: 1.2rem;
+  color: var(--cor-texto);
+}
+
+.categoria {
+  display: inline-block;
+  background: var(--cor-primaria);
+  color: var(--cor-rodape-texto);
+  padding: 0.5rem 1.4rem;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+}
+
+.preco {
+  margin-bottom: 2rem;
+}
+
+.valor {
+  display: block;
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  color: var(--cor-primaria);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.parcelas {
+  font-size: 0.95rem;
+  color: var(--cor-texto-clara);
+}
+
+.descricao {
+  margin-bottom: 2rem;
+  line-height: 1.75;
+  color: var(--cor-texto-clara);
+}
+
+.especificacoes {
+  margin-bottom: 2rem;
+}
+
+.especificacoes h3 {
+  margin-bottom: 1rem;
+  color: var(--cor-texto);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.especificacoes ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.especificacoes li {
+  background: var(--cor-de-fundo);
+  padding: 0.8rem 1rem;
+  border-radius: calc(var(--radius) / 2);
+  border: 1px solid var(--cor-borda);
+  color: var(--cor-texto-clara);
+}
+
+.estoque-info {
+  margin-bottom: 2.5rem;
+}
+
+.estoque {
+  color: var(--cor-texto);
+  font-weight: 600;
+}
+
+.estoque.baixo {
+  color: var(--cor-erro);
+}
+
+.botoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.btn-add,
+.btn-comprar {
+  flex: 1 1 200px;
+  padding: 0.95rem 1.2rem;
+  border-radius: 999px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform 0.2s ease, box-shadow 0.2s ease,
+    background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.btn-add {
+  background: var(--cor-primaria);
+  color: var(--cor-rodape-texto);
+  border: none;
+}
+
+.btn-add:hover,
+.btn-add:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(17, 17, 17, 0.15);
+}
+
+.btn-comprar {
+  background: transparent;
+  color: var(--cor-texto);
+  border: 2px solid var(--cor-borda);
+}
+
+.btn-comprar:hover,
+.btn-comprar:focus-visible {
+  border-color: var(--cor-primaria);
+  color: var(--cor-primaria);
+  transform: translateY(-2px);
+}
+
+.nao-encontrado {
+  text-align: center;
+  padding: 3rem;
+  background: var(--cor-fundo-card);
+  border-radius: var(--radius);
+  border: 1px solid var(--cor-borda);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.nao-encontrado h2 {
+  color: var(--cor-texto);
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 960px) {
+  .detalhes-produto {
+    grid-template-columns: 1fr;
+    padding: 2rem;
+  }
+
+  .produto-container {
+    padding: 2.5rem 1.5rem 3rem;
+  }
+
+  .imagem-produto::before {
+    inset: 3%;
+  }
+}
+
+@media (max-width: 600px) {
+  .produto-container {
+    padding: 2rem 1rem 2.5rem;
+  }
+
+  .detalhes-produto {
+    padding: 1.5rem;
+    gap: 2rem;
+  }
+
+  .botoes {
+    flex-direction: column;
+  }
+
+  .voltar-btn {
+    padding: 0.5rem 1rem;
+  }
+}

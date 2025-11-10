@@ -1,0 +1,62 @@
+<main style="background-color: white">
+  <section class="principal" aria-label="Nova Coleção">
+    <div class="imagem-principal-hero">
+      <img
+        src="assets/img/main-image.png"
+        alt="Modelos usando roupas da nova coleção"
+      />
+    </div>
+  </section>
+
+  <section class="veja-tambem" aria-labelledby="veja-tambem-titulo">
+    <h2 id="veja-tambem-titulo">Veja também</h2>
+    <ul>
+      <li>
+        <a href="#">
+          <img src="assets/img/see-more-1.png" alt="Semana da moda" />
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <img src="assets/img/see-more-2.png" alt="Ofertas especiais" />
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <img src="assets/img/see-more-3.png" alt="Novos looks" />
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="destaque" aria-label="Promoção até 50%">
+    <div class="imagem-destaque">
+      <img
+        src="assets/img/bottom-image.png"
+        alt="Clientes aproveitando a promoção de roupas"
+      />
+      <img src="assets/img/see-more-3.png" alt="Promoção de roupas" />
+    </div>
+  </section>
+
+  <section class="secao-produtos" aria-labelledby="titulo-produtos">
+    <h2 id="titulo-produtos">Nossos Produtos</h2>
+    <div class="container-tabela-produtos">
+      <app-tabela-produtos [modoAdmin]="false"></app-tabela-produtos>
+    </div>
+  </section>
+
+  <section class="boletim" aria-labelledby="titulo-boletim">
+    <h2 id="titulo-boletim">Receba ofertas</h2>
+    <form>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Digite seu e-mail"
+        required
+      />
+      <button type="submit">Inscrever</button>
+    </form>
+  </section>
+</main>
