@@ -36,9 +36,43 @@
         </span>
       </div>
 
+      <div class="quantidade-container">
+        <label for="quantidade">Quantidade:</label>
+        <div class="controle-quantidade">
+          <button
+            type="button"
+            class="btn-quantidade"
+            (click)="diminuirQuantidade()"
+            [disabled]="quantidade <= 1"
+          >
+            -
+          </button>
+          <input
+            id="quantidade"
+            type="number"
+            [(ngModel)]="quantidade"
+            min="1"
+            [max]="p.estoque ?? 999"
+            class="input-quantidade"
+          />
+          <button
+            type="button"
+            class="btn-quantidade"
+            (click)="aumentarQuantidade()"
+            [disabled]="p.estoque ? quantidade >= p.estoque : false"
+          >
+            +
+          </button>
+        </div>
+      </div>
+
       <div class="botoes">
-        <button class="btn-add" (click)="adicionarNoCarrinho()">
-          Adicionar ao Carrinho
+        <button
+          class="btn-add"
+          (click)="adicionarNoCarrinho()"
+          [disabled]="adicionando || !p.id"
+        >
+          {{ adicionando ? "Adicionando..." : "Adicionar ao Carrinho" }}
         </button>
         <button class="btn-comprar">Comprar Agora</button>
       </div>

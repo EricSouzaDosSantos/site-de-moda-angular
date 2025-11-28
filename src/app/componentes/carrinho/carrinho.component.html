@@ -1,0 +1,32 @@
+<div *ngIf="(carrinho | async)?.length; else vazio" class="carrinho-container">
+  <div *ngFor="let p of carrinho | async" class="produto">
+    <div>
+      <strong>{{ p.produto?.nome }}</strong
+      ><br />
+      Preço: {{ p.produto?.preco | currency : "BRL" }}<br />
+      Quantidade:
+      <button (click)="diminuirQuantidade(p)">-</button>
+      <span class="quantidade-valor">{{ p.quantidade }}</span>
+      <button (click)="aumentarQuantidade(p)">+</button>
+    </div>
+
+    <div>
+      Subtotal: {{ (p.produto?.preco || 0) * p.quantidade | currency : "BRL" }}
+      <button (click)="removerProduto(p.id || '')">Remover</button>
+    </div>
+  </div>
+
+  <h3>Total: {{ total | async | currency : "BRL" }}</h3>
+
+  <button
+    (click)="confirmarPedido()"
+    routerLink="/pagamento"
+    class="btn-confirmar"
+  >
+    Confirmar Pedido
+  </button>
+</div>
+
+<ng-template #vazio>
+  <p class="carrinho-vazio">Seu carrinho</p>
+</ng-template>

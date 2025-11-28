@@ -21,7 +21,7 @@ export class CabecalhoComponent {
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
-    console.log('Scroll Y:', this.escrolado);
+    // console.log('Scroll Y:', this.escrolado);
     this.escrolado = window.scrollY > 50;
   }
 }

@@ -4,6 +4,9 @@ import { LoginComponent } from './paginas/login/login.component';
 import { CadastroComponent } from './paginas/cadastro/cadastro.component';
 import { DetalhesProdutoComponent } from './paginas/detalhes-produto/detalhes-produto.component';
 import { AdministradorProdutosComponent } from './paginas/admin-produtos/admin-produtos.component';
+import { CarrinhoComponent } from './componentes/carrinho/carrinho.component';
+import { PagamentoComponent } from './componentes/pagamento/pagamento.component';
+import { PromocaoComponente } from './paginas/promocao/promocao.componente';
 
 export const routes: Routes = [
   {
@@ -31,5 +34,20 @@ export const routes: Routes = [
     path: 'admin',
     component: AdministradorProdutosComponent,
     title: 'Administrador dos Produtos',
+  },
+  {
+    path: 'carrinho',
+    component: CarrinhoComponent,
+    title: 'Carrinho de compras',
+  },
+  {
+    path: 'pagamento',
+    component: PagamentoComponent,
+    title: 'Pagamento',
+  },
+  {
+    path: 'promocoes',
+    component: PromocaoComponente,
+    title: 'Promoções',
   },
 ];

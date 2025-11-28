@@ -1,0 +1,160 @@
+<main>
+  <section class="hero" aria-label="Promoções">
+    <div class="hero-text center">
+      <h1>Promoções</h1>
+      <p class="subtitle">
+        Aproveite descontos exclusivos em peças selecionadas.
+      </p>
+    </div>
+  </section>
+
+  <section class="secao-produtos" aria-labelledby="titulo-produtos">
+    <div class="container-tabela-produtos">
+      <div class="barra-ferramentas-produtos">
+        <div class="busca">
+          <input
+            type="search"
+            placeholder="Buscar produtos, ex: vestido"
+            [(ngModel)]="termoBusca"
+          />
+        </div>
+
+        <div class="ordenacao">
+          <label for="ordenar">Ordenar:</label>
+          <select id="ordenar" [(ngModel)]="ordenarPor">
+            <option value="padrao">Mais relevantes</option>
+            <option value="preco-crescente">Menor preço</option>
+            <option value="preco-decrescente">Maior preço</option>
+            <option value="desconto">Maior desconto</option>
+          </select>
+        </div>
+
+        <div class="contador-resultados">
+          Mostrando {{ produtosFiltrados.length }} de {{
+          produtosEmPromocao.length }}
+        </div>
+      </div>
+
+      <div class="chips-categorias">
+        <button
+          class="chip"
+          (click)="filtrarPor(null)"
+          [class.active]="!categoriaSelecionada"
+        >
+          Todas
+        </button>
+        <button
+          class="chip"
+          (click)="filtrarPor('Vestuário')"
+          [class.active]="categoriaSelecionada === 'Vestuário'"
+        >
+          Vestuário
+        </button>
+        <button
+          class="chip"
+          (click)="filtrarPor('Acessórios')"
+          [class.active]="categoriaSelecionada === 'Acessórios'"
+        >
+          Acessórios
+        </button>
+        <button
+          class="chip"
+          (click)="filtrarPor('Calçados')"
+          [class.active]="categoriaSelecionada === 'Calçados'"
+        >
+          Calçados
+        </button>
+        <button
+          class="chip"
+          (click)="filtrar50off()"
+          [class.active]="filtro50offSelecionado"
+        >
+          50% OFF
+        </button>
+      </div>
+
+      <div class="filtros-e-produtos">
+        <aside class="filtros-laterais">
+          <h3>Filtrar por Categoria</h3>
+          <ul>
+            <li>
+              <button
+                (click)="filtrarPor(null)"
+                [class.active]="!categoriaSelecionada"
+              >
+                Todas ({{ produtosEmPromocao.length }})
+              </button>
+            </li>
+            <li>
+              <button
+                (click)="filtrarPor('Vestuário')"
+                [class.active]="categoriaSelecionada === 'Vestuário'"
+              >
+                Vestuário ({{ quantidadeVestidosEmPromocao }})
+              </button>
+            </li>
+            <li>
+              <button
+                (click)="filtrarPor('Acessórios')"
+                [class.active]="categoriaSelecionada === 'Acessórios'"
+              >
+                Acessórios
+              </button>
+            </li>
+            <li>
+              <button
+                (click)="filtrarPor('Calçados')"
+                [class.active]="categoriaSelecionada === 'Calçados'"
+              >
+                Calçados
+              </button>
+            </li>
+            <li>
+              <button
+                (click)="filtrar50off()"
+                [class.active]="filtro50offSelecionado"
+              >
+                50% OFF
+              </button>
+            </li>
+          </ul>
+        </aside>
+
+        <div class="grade-lista-produtos">
+          <div *ngIf="carregando" class="carregando">
+            <p>Carregando produtos...</p>
+          </div>
+          <div
+            *ngIf="!carregando && produtosFiltrados.length === 0"
+            class="sem-produtos"
+          >
+            <p>Nenhum produto encontrado.</p>
+          </div>
+          <div
+            *ngFor="let produto of produtosFiltrados"
+            class="cartao-produto"
+            (click)="verProduto(produto.id)"
+          >
+            <img [src]="produto.imagem" [alt]="produto.nome" />
+            <div class="info-produto">
+              <h3>{{ produto.nome }}</h3>
+              <div class="precos">
+                <span class="preco-original" *ngIf="produto.precoOriginal"
+                  >R$ {{ produto.precoOriginal | number:'1.2-2' }}</span
+                >
+                <span class="preco-promocional"
+                  >R$ {{ (produto.precoPromocional || produto.preco) |
+                  number:'1.2-2' }}</span
+                >
+                <span class="desconto-badge" *ngIf="produto.desconto"
+                  >{{ produto.desconto }}% OFF</span
+                >
+              </div>
+              <p class="categoria">{{ produto.categoria }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

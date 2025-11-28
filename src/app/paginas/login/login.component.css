@@ -9,7 +9,7 @@
 }
 
 .card-login {
-  background: var(--fundo-card);
+  background: var(--cor-fundo-card);
   padding: 2.5rem 2rem;
   border-radius: var(--radius);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
@@ -41,13 +41,13 @@
 .grupo-input label {
   font-size: 0.95rem;
   font-weight: 500;
-  color: var(--cor-texto-claro);
+  color: var(--cor-texto-clara);
 }
 
 .grupo-input input {
   padding: 0.8rem;
   border: 1px solid var(--cor-borda);
-  border-radius: var(--raio);
+  border-radius: var(--radius);
   font-size: 1rem;
   transition: border-color 0.2s, box-shadow 0.2s;
   background: #fff;
@@ -55,20 +55,40 @@
 
 .grupo-input input:focus {
   outline: none;
-  border-color: var(--cor-principal);
+  border-color: var(--cor-primaria);
   box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.15);
+}
+
+.grupo-input input.ng-invalid.ng-touched {
+  border-color: var(--cor-erro);
+}
+
+.mensagem-erro {
+  font-size: 0.85rem;
+  color: var(--cor-erro);
+  margin-top: 0.3rem;
+}
+
+.mensagem-erro-geral {
+  padding: 0.75rem;
+  background: rgba(220, 38, 38, 0.1);
+  border: 1px solid var(--cor-erro);
+  border-radius: calc(var(--radius) / 1.5);
+  color: var(--cor-erro);
+  font-size: 0.9rem;
+  text-align: center;
 }
 
 .esqueceu-senha {
   align-self: flex-end;
   font-size: 0.85rem;
-  color: var(--cor-texto-claro);
+  color: var(--cor-texto-clara);
   text-decoration: none;
   margin-top: 0.3rem;
 }
 
 .esqueceu-senha:hover {
-  color: var(--cor-principal);
+  color: var(--cor-primaria);
 }
 
 .botao-enviar {
@@ -84,9 +104,14 @@
   margin-top: 0.5rem;
 }
 
-.botao-enviar:hover {
+.botao-enviar:hover:not(:disabled) {
   background: #333333;
   transform: translateY(-2px);
+}
+
+.botao-enviar:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .divisor {
@@ -114,7 +139,7 @@
   padding: 0.9rem;
   width: 100%;
   border: 1px solid var(--cor-borda);
-  border-radius: var(--raio);
+  border-radius: var(--radius);
   background: #fff;
   font-size: 1rem;
   font-weight: 500;
@@ -136,11 +161,11 @@
   text-align: center;
   margin-top: 1rem;
   font-size: 0.9rem;
-  color: var(--cor-texto-claro);
+  color: var(--cor-texto-clara);
 }
 
 .link-cadastro {
-  color: var(--cor-texto-claro);
+  color: var(--cor-texto-clara);
   font-weight: 500;
   text-decoration: none;
   margin-left: 0.3rem;
@@ -156,10 +181,10 @@
 }
 
 .rodape-login a {
-  color: var(--cor-texto-claro);
+  color: var(--cor-texto-clara);
   text-decoration: none;
 }
 
 .rodape-login a:hover {
-  color: var(--cor-principal);
+  color: var(--cor-primaria);
 }

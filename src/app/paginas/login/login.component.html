@@ -4,20 +4,60 @@
       <h1>Login</h1>
     </header>
 
-    <form class="formulario-login">
+    <form
+      [formGroup]="formulario"
+      (ngSubmit)="logar()"
+      class="formulario-login"
+      novalidate
+    >
       <div class="grupo-input">
         <label for="email">E-mail</label>
-        <input id="email" type="email" placeholder="seu@email.com" />
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          placeholder="seu@email.com"
+        />
+        @if (formulario.get('email')?.hasError('required') &&
+        formulario.get('email')?.touched) {
+        <span class="mensagem-erro">E-mail é obrigatório</span>
+        } @if (formulario.get('email')?.hasError('email') &&
+        formulario.get('email')?.touched) {
+        <span class="mensagem-erro">E-mail inválido</span>
+        }
       </div>
 
       <div class="grupo-input">
         <label for="senha">Senha</label>
-        <input id="senha" type="password" placeholder="••••••••" />
+        <input
+          id="senha"
+          type="password"
+          formControlName="senha"
+          placeholder="••••••••"
+        />
+        @if (formulario.get('senha')?.hasError('required') &&
+        formulario.get('senha')?.touched) {
+        <span class="mensagem-erro">Senha é obrigatória</span>
+        } @if (formulario.get('senha')?.hasError('minlength') &&
+        formulario.get('senha')?.touched) {
+        <span class="mensagem-erro">Mínimo de 6 caracteres</span>
+        }
         <a href="#" class="esqueceu-senha">Esqueceu a senha?</a>
       </div>
 
-      <button type="submit" class="botao-enviar">Entrar</button>
+      @if (mensagemErro) {
+      <div class="mensagem-erro-geral">
+        {{ mensagemErro }}
+      </div>
+      }
 
+      <button
+        type="submit"
+        class="botao-enviar"
+        [disabled]="formulario.invalid || carregando"
+      >
+        {{ carregando ? "Entrando..." : "Entrar" }}
+      </button>
 
       <p class="texto-cadastro">
         Não tem conta?

@@ -1,0 +1,174 @@
+<div class="container-pagamento">
+  <h2>Finalizar Pagamento</h2>
+
+  <form [formGroup]="formularioPagamento" (ngSubmit)="enviar()">
+    <h3>Dados do Cartão</h3>
+    <div class="grupo-formulario">
+      <label for="nome-cartao">Nome no Cartão</label>
+      <input
+        id="nome-cartao"
+        type="text"
+        formControlName="nomeCartao"
+        class="controle-formulario"
+        [ngClass]="{ invalido: submetido && controles['nomeCartao'].errors }"
+      />
+      <div
+        *ngIf="submetido && controles['nomeCartao'].errors"
+        class="feedback-invalido"
+      >
+        <div *ngIf="controles['nomeCartao'].errors['required']">
+          Nome é obrigatório.
+        </div>
+      </div>
+    </div>
+
+    <div class="grupo-formulario">
+      <label for="numero-cartao">Número do Cartão</label>
+      <input
+        id="numero-cartao"
+        type="text"
+        formControlName="numeroCartao"
+        class="controle-formulario"
+        maxlength="16"
+        [ngClass]="{ invalido: submetido && controles['numeroCartao'].errors }"
+      />
+      <div
+        *ngIf="submetido && controles['numeroCartao'].errors"
+        class="feedback-invalido"
+      >
+        <div *ngIf="controles['numeroCartao'].errors['required']">
+          Número é obrigatório.
+        </div>
+        <div *ngIf="controles['numeroCartao'].errors['pattern']">
+          Número deve ter 16 dígitos.
+        </div>
+      </div>
+    </div>
+
+    <div class="linha">
+      <div class="grupo-formulario col-6">
+        <label for="data-validade">Validade (MM/AA)</label>
+        <input
+          id="data-validade"
+          type="text"
+          formControlName="dataValidade"
+          class="controle-formulario"
+          placeholder="MM/AA"
+          [ngClass]="{
+            invalido: submetido && controles['dataValidade'].errors
+          }"
+        />
+        <div
+          *ngIf="submetido && controles['dataValidade'].errors"
+          class="feedback-invalido"
+        >
+          <div *ngIf="controles['dataValidade'].errors['required']">
+            Validade é obrigatória.
+          </div>
+          <div *ngIf="controles['dataValidade'].errors['pattern']">
+            Formato inválido (MM/AA).
+          </div>
+        </div>
+      </div>
+
+      <div class="grupo-formulario col-6">
+        <label for="cvv">CVV</label>
+        <input
+          id="cvv"
+          type="text"
+          formControlName="cvv"
+          class="controle-formulario"
+          maxlength="4"
+          [ngClass]="{ invalido: submetido && controles['cvv'].errors }"
+        />
+        <div
+          *ngIf="submetido && controles['cvv'].errors"
+          class="feedback-invalido"
+        >
+          <div *ngIf="controles['cvv'].errors['required']">
+            CVV é obrigatório.
+          </div>
+          <div *ngIf="controles['cvv'].errors['pattern']">CVV inválido.</div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Endereço de Cobrança</h3>
+    <div formGroupName="endereco">
+      <div class="grupo-formulario">
+        <label for="rua">Rua/Avenida</label>
+        <input
+          id="rua"
+          type="text"
+          formControlName="rua"
+          class="controle-formulario"
+          [ngClass]="{ invalido: submetido && controlesEndereco['rua'].errors }"
+        />
+        <div
+          *ngIf="submetido && controlesEndereco['rua'].errors"
+          class="feedback-invalido"
+        >
+          <div *ngIf="controlesEndereco['rua'].errors['required']">
+            Rua é obrigatória.
+          </div>
+        </div>
+      </div>
+
+      <div class="linha">
+        <div class="grupo-formulario col-6">
+          <label for="cidade">Cidade</label>
+          <input
+            id="cidade"
+            type="text"
+            formControlName="cidade"
+            class="controle-formulario"
+            [ngClass]="{
+              invalido: submetido && controlesEndereco['cidade'].errors
+            }"
+          />
+          <div
+            *ngIf="submetido && controlesEndereco['cidade'].errors"
+            class="feedback-invalido"
+          >
+            <div *ngIf="controlesEndereco['cidade'].errors['required']">
+              Cidade é obrigatória.
+            </div>
+          </div>
+        </div>
+
+        <div class="grupo-formulario col-6">
+          <label for="cep">CEP</label>
+          <input
+            id="cep"
+            type="text"
+            formControlName="cep"
+            class="controle-formulario"
+            [ngClass]="{
+              invalido: submetido && controlesEndereco['cep'].errors
+            }"
+          />
+          <div
+            *ngIf="submetido && controlesEndereco['cep'].errors"
+            class="feedback-invalido"
+          >
+            <div *ngIf="controlesEndereco['cep'].errors['required']">
+              CEP é obrigatório.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button
+      type="submit"
+      [disabled]="pagamentoSucesso"
+      class="botao botao-primario"
+    >
+      Pagar
+    </button>
+  </form>
+
+  <div *ngIf="pagamentoSucesso" class="alerta alerta-sucesso mt-3">
+    Seu pagamento foi aprovado!
+  </div>
+</div>
